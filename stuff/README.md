@@ -1,1 +1,1 @@
-# Useful files like attacking and detecting scripts
+Useful files like attacking and detecting scripts
