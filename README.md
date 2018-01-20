@@ -4,15 +4,17 @@ The aim of the project is to learn about honeypot, web application security and 
 
 This project includes :
 
-A Vulnerable website acting as a honeypot
+##A Vulnerable website acting as a honeypot
 
-Web vulnerabilities : 
-	Injections (SQLI)
-	Broken Authentication (Brute Force)
+##Web vulnerabilities :
+'''
+Injections (SQLI)
+Broken Authentication (Brute Force)
+'''
 
-Python script to find pattern for these attacks using regular expression
+##Python script to find pattern for these attacks using regular expression
 
-Python script to brute force a login page using dictionary
+##Python script to brute force a login page using dictionary
 
 
 
