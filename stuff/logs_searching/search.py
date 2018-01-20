@@ -48,20 +48,26 @@ def get_query(line):
     except:
         return 0
 
+#To alert admin when attack is detected
+def beep():
+    print '\a'
+ 
+
 def main():
 
     logfile = open('/var/log/apache2/access.log','r')
     loglines = follow(logfile)
+
     for line in loglines:
         try:
             query = get_query(line)
             sqli=checksqli(query)
-            print query
             if sqli:
                 print termcolor.colored('SQL INJECTION ATTEMPT'.center(50,'*'),'green')
                 print 'Details :\nFrom : '+get_ip(line)+'\nQuery : '+urllib.unquote(query)
                 print termcolor.colored(''.center(50,'*')+'\n','green')
-                print "\a"
+                beep()
+
         except:
             pass
 
