@@ -14,9 +14,9 @@ Broken Authentication (Brute Force)
 ...
 ```
 
-[Python script](https:/www.github.com/VikasGothwal/Honeypot/tree/master/stuff/logs_searching/) to find pattern for these attacks using regular expression
+[Python script](Honeypot/tree/master/stuff/logs_searching/) to find pattern for these attacks using regular expression
 
-[Python script](VikasGothwal/Honeypot/tree/master/stuff/attacks/brute_force) to brute force a login page using dictionary
+[Python script](Honeypot/tree/master/stuff/attacks/brute_force) to brute force a login page using dictionary
 
 
 
