@@ -53,6 +53,20 @@ def beep():
     print '\a'
  
 
+#Check if an IP address is brute forcing 
+ips=[]
+def checkbrute(ip):
+    ips.append(ip)    
+    if ips.count(ip)>50:
+        while ip in ips:
+            ips.remove(ip)
+        return 1
+    else:
+        return 0
+
+if len(ips)>1000:
+    ips=[]
+
 def main():
 
     logfile = open('/var/log/apache2/access.log','r')
@@ -61,11 +75,17 @@ def main():
     for line in loglines:
         try:
             query = get_query(line)
-            sqli=checksqli(query)
+            sqli = checksqli(query)
             if sqli:
                 print termcolor.colored('SQL INJECTION ATTEMPT'.center(50,'*'),'green')
                 print 'Details :\nFrom : '+get_ip(line)+'\nQuery : '+urllib.unquote(query)
                 print termcolor.colored(''.center(50,'*')+'\n','green')
+                beep()
+            brute = checkbrute(get_ip(line))
+            if brute:
+                print termcolor.colored('BRUTE FORCE ATTEMPT'.center(50,'*'),'red')
+                print 'Details :\nFrom : '+get_ip(line)+'\nCheck logs for more info.'
+                print termcolor.colored(''.center(50,'*')+'\n','red')
                 beep()
 
         except:
