@@ -1,4 +1,4 @@
-# Web based honeypot for sql injection and brute force
+# Web based honeypot
 
 The aim of the project is to learn about honeypot, web application security and python.
 
