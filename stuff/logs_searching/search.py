@@ -64,8 +64,16 @@ def checkbrute(ip):
     else:
         return 0
 
+#To clear the IPs list after 1000
 if len(ips)>1000:
     ips=[]
+
+def checkxss(line):
+    match=re.search('%3Cscript',line) #%3C - <
+    try:
+        return match.group()
+    except:
+        return 0
 
 def main():
 
@@ -75,17 +83,26 @@ def main():
     for line in loglines:
         try:
             query = get_query(line)
-            sqli = checksqli(query)
-            if sqli:
-                print termcolor.colored('SQL INJECTION ATTEMPT'.center(50,'*'),'green')
-                print 'Details :\nFrom : '+get_ip(line)+'\nQuery : '+urllib.unquote(query)
-                print termcolor.colored(''.center(50,'*')+'\n','green')
-                beep()
+            sqli = checksqli(query) 
             brute = checkbrute(get_ip(line))
+            xss = checkxss(query)
+
+            if xss:
+                print termcolor.colored('XSS ATTEMPT'.center(50,'*'),'yellow')
+                print termcolor.colored('Details :\nFrom : '+get_ip(line)+'\nCode : '+urllib.unquote(query),'yellow')
+                print termcolor.colored(''.center(50,'*')+'\n','yellow')
+                beep()
+
+            if sqli:
+                print termcolor.colored('SQL INJECTION ATTEMPT'.center(50,'*'),'white')
+                print termcolor.colored('Details :\nFrom : '+get_ip(line)+'\nQuery : '+urllib.unquote(query),'white')
+                print termcolor.colored(''.center(50,'*')+'\n','white')
+                beep()
+            
             if brute:
-                print termcolor.colored('BRUTE FORCE ATTEMPT'.center(50,'*'),'red')
-                print 'Details :\nFrom : '+get_ip(line)+'\nCheck logs for more info.'
-                print termcolor.colored(''.center(50,'*')+'\n','red')
+                print termcolor.colored('BRUTE FORCE ATTEMPT'.center(50,'*'),'green')
+                print termcolor.colored('Details :\nFrom : '+get_ip(line)+'\nCheck logs for more info.','green')
+                print termcolor.colored(''.center(50,'*')+'\n','green')
                 beep()
 
         except:

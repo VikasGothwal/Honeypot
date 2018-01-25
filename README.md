@@ -11,12 +11,11 @@ Web vulnerabilities to be exploited:
 ```
 Injections (SQLI)
 Broken Authentication (Brute Force)
+Cross-Site Scripting (XSS)
 ...
 ```
 
 Python script to find pattern for these attacks using regular expression
 
 Python script to brute force a login page using dictionary
-
-
 
