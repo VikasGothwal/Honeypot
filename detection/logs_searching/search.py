@@ -75,6 +75,18 @@ def checkxss(line):
     except:
         return 0
 
+def get_link(line):
+    match=re.search('/project/.+HTTP',line)
+    try:
+        return ('http://192.168.110.135'+match.group())[:-5]
+    except:
+        return 0
+
+def status(link):
+    op=urllib.urlopen(link)
+    return op.code
+
+
 def main():
 
     logfile = open('/var/log/apache2/access.log','r')
@@ -98,12 +110,18 @@ def main():
                 print termcolor.colored('Details :\nFrom : '+get_ip(line)+'\nQuery : '+urllib.unquote(query),'white')
                 print termcolor.colored(''.center(50,'*')+'\n','white')
                 beep()
+
+                link=get_link(line)
+                code=status(link)
+                #if code==200:
+                #    print 'Success'
             
             if brute:
                 print termcolor.colored('BRUTE FORCE ATTEMPT'.center(50,'*'),'green')
                 print termcolor.colored('Details :\nFrom : '+get_ip(line)+'\nCheck logs for more info.','green')
                 print termcolor.colored(''.center(50,'*')+'\n','green')
                 beep()
+
 
         except:
             pass

@@ -2,6 +2,7 @@
 import urllib
 
 def main():
+    print open('logo.txt','r').read()
     try:
 
         usernames = open('users.txt','r').read().split('\n')
