@@ -111,11 +111,6 @@ def main():
                 print termcolor.colored(''.center(50,'*')+'\n','white')
                 beep()
 
-                link=get_link(line)
-                code=status(link)
-                #if code==200:
-                #    print 'Success'
-            
             if brute:
                 print termcolor.colored('BRUTE FORCE ATTEMPT'.center(50,'*'),'green')
                 print termcolor.colored('Details :\nFrom : '+get_ip(line)+'\nCheck logs for more info.','green')
