@@ -11,7 +11,7 @@ There are many types of SQL Injections
 #### Error based injection 
 In this type of injection attacker try to put any character which generates an error in the result of query and understand the structure of the query to further exploit it.
 
-You can generate an error by simply putting an single quote ' in the query.
+You can generate an error by simply putting a single quote ' in the query.
 
 ```
 select id from login where username=''' and password='';
